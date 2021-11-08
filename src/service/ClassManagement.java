@@ -23,13 +23,13 @@ public class ClassManagement {
 
     public Class addClass(String name) {
         Class newClass = new Class(name);
-        classList.add( newClass);
+        classList.add(newClass);
         return newClass;
     }
 
     public Class addClass(String name, Teacher teacher) {
         Class newClass = new Class(teacher, name);
-        classList.add( newClass);
+        classList.add(newClass);
         return newClass;
     }
 
@@ -37,44 +37,49 @@ public class ClassManagement {
         classVar.setStatus(status);
     }
 
-    public ArrayList<Class> findClassByTeacher(Teacher teacher){
-        ArrayList <Class> classes = new ArrayList<>();
-        for (Class classVar: classList){
-            if (classVar.getTeacher()==teacher){
+    public ArrayList<Class> findClassByTeacher(Teacher teacher) {
+        ArrayList<Class> classes = new ArrayList<>();
+        for (Class classVar : classList) {
+            if (classVar.getTeacher() == teacher) {
                 classes.add(classVar);
             }
         }
         return classes;
     }
 
-    public String printClassInfoByTeacher(Teacher teacher){
+    public String printClassInfoByTeacher(Teacher teacher) {
         String str = "";
-        ArrayList <Class> classes = findClassByTeacher(teacher);
-        for (Class classVar:classes){
-            ArrayList <Student> students = StudentManagement.getInstance().filterStudentsByClass(classVar);
-            for (Student student: students){
-                str +=  student;
+        ArrayList<Class> classes = findClassByTeacher(teacher);
+        for (Class classVar : classes) {
+            ArrayList<Student> students = StudentManagement.getInstance().filterStudentsByClass(classVar.getName());
+            str += "Class "+ classVar.getName() +"\n";
+            for (Student student : students) {
+                str += student  + "\n";
             }
         }
         return str;
     }
 
-    public String printAllClasses(){
-        String str ="";
+    public String printAllClasses() {
+        String str = "";
 
-        for (Class classVar:classList){
-            str += classVar;
+        for (Class classVar : classList) {
+            ArrayList<Student> students = StudentManagement.getInstance().filterStudentsByClass(classVar.getName());
+            str += "Class "+ classVar.getName() +"\n";
+            for (Student student : students) {
+                str += student  + "\n";
+            }
         }
         return str;
     }
 
-    public void updateTeacherForClass(Class classVar, Teacher teacher){
+    public void updateTeacherForClass(Class classVar, Teacher teacher) {
         classVar.setTeacher(teacher);
     }
 
-    public Class findClassByName(String name){
-        for (Class classVar: classList){
-            if (classVar.getName().equals(name)){
+    public Class findClassByName(String name) {
+        for (Class classVar : classList) {
+            if (classVar.getName().equals(name)) {
                 return classVar;
             }
         }

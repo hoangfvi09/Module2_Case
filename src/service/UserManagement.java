@@ -31,7 +31,8 @@ public class UserManagement {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-// if phone number already exist, return existing teacher object, else return new teacher object
+
+    // if phone number already exist, return existing teacher object, else return new teacher object
     public User addNewUser(User.ROLE role, String name, String phoneNumber) {
         if (findUserByPhoneNumber(phoneNumber) != null) {
             return findUserByPhoneNumber(phoneNumber);

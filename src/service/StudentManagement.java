@@ -8,10 +8,10 @@ import java.util.*;
 
 public class StudentManagement {
     private static final StudentManagement INSTANCE = new StudentManagement();
-    private final ArrayList< Student> studentList;
+    private final ArrayList<Student> studentList;
     private static int studentNo = 0;
 
-    public static StudentManagement getInstance(){
+    public static StudentManagement getInstance() {
         return INSTANCE;
     }
 
@@ -22,23 +22,23 @@ public class StudentManagement {
 
     public void addStudent(String name, String phoneNumber, Class classVar, String birthday) {
         Student student = new Student(name, phoneNumber, studentNo, classVar, birthday);
-        studentList.add( student);
+        studentList.add(student);
         studentNo++;
     }
-    public void addStudent(String name, String phoneNumber, Class classVar,String birthday,Parent parent) {
-        Student student = new Student(name, phoneNumber, studentNo, classVar,birthday,parent);
-        studentList.add( student);
+
+    public void addStudent(String name, String phoneNumber, Class classVar, String birthday, Parent parent) {
+        Student student = new Student(name, phoneNumber, studentNo, classVar, birthday, parent);
+        studentList.add(student);
         studentNo++;
     }
 
     //tao hsinh moi
-    public Student addStudent(String name, Class classVar,String birthday,Parent parent) {
-        Student student = new Student(name, studentNo, classVar,birthday,parent);
-        studentList.add( student);
+    public Student addStudent(String name, Class classVar, String birthday, Parent parent) {
+        Student student = new Student(name, studentNo, classVar, birthday, parent);
+        studentList.add(student);
         studentNo++;
         return student;
     }
-
 
 
     public void addStudent(String name) {
@@ -52,53 +52,49 @@ public class StudentManagement {
     }
 
     //return array list of students in specific class
-    public ArrayList<Student> filterStudentsByClass(Class classVar) {
-        ArrayList <Student> students=new ArrayList<>();
+    public ArrayList<Student> filterStudentsByClass(String className) {
+        ArrayList<Student> students = new ArrayList<>();
 
-        for (Student student: studentList) {
-            Class classOfStudent =  student.getStudentsClass();
-            if (student.getStudentsClass() == classVar){
+        for (Student student : studentList) {
+            Class classOfStudent = student.getStudentsClass();
+            if (classOfStudent.getName() == className) {
                 students.add(student);
             }
         }
         return students;
     }
 
-    public Student findStudentById(int id){
-        for (Student student: studentList) {
+    public Student findStudentById(int id) {
+        for (Student student : studentList) {
 
-            if (student.getId() == id){
+            if (student.getId() == id) {
                 return student;
             }
         }
         return null;
     }
 
-    public ArrayList<Student> findStudentByName(String name){
-        ArrayList <Student> students=new ArrayList<>();
-        for (Student student: studentList) {
+    public ArrayList<Student> findStudentByName(String name) {
+        ArrayList<Student> students = new ArrayList<>();
+        for (Student student : studentList) {
 
-            if (student.getName().contains(name) ){
+            if (student.getName().contains(name)) {
                 students.add(student);
             }
         }
         return students;
     }
 
-    public ArrayList <Student> findStudentByParent(Parent parent){
-        ArrayList <Student> students=new ArrayList<>();
-        for (Student student: studentList) {
+    public ArrayList<Student> findStudentByParent(Parent parent) {
+        ArrayList<Student> students = new ArrayList<>();
+        for (Student student : studentList) {
 
-            if (student.getParent()==parent ){
+            if (student.getParent() == parent) {
                 students.add(student);
             }
         }
         return students;
     }
-
-
-
-
 
 
 }

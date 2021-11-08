@@ -17,16 +17,18 @@ public class AcademicRecordManagement {
         return INSTANCE;
     }
 
-    public  AcademicRecord findRecordByStudent(Student student) {
-        for (AcademicRecord record : INSTANCE.recordList) {
-            if (record.getStudent() == student) {
-                return record;
+    public AcademicRecord findRecordByStudent(int id) {
+        for (AcademicRecord record : recordList) {
+            if(record.getStudent()!=null) {
+                if (record.getStudent().getId() == id) {
+                    return record;
+                }
             }
         }
         return null;
     }
 
-    public AcademicRecord addNewRecord(Student student){
+    public AcademicRecord addNewRecord(Student student) {
         AcademicRecord academicRecord = new AcademicRecord(student);
         recordList.add(academicRecord);
         return academicRecord;
