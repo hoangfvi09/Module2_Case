@@ -3,33 +3,33 @@ package model;
 import java.util.Set;
 
 public class Conversation {
-    private String inbox;
+    private String messages;
     private Set <User> members;
     private int id;
 
     public Conversation(String inbox, Set<User> members, int id) {
-        this.inbox = inbox;
+        this.messages = inbox;
         this.members = members;
         this.id =id;
     }
 
     public Conversation(Set<User> members, int id) {
         this.members = members;
-        this.inbox = "";
+        this.messages = "";
         this.id = id;
     }
 
     public Conversation() {
-        this.inbox =  "";
+        this.messages =  "";
         this.members =  null;
     }
 
-    public String getInbox() {
-        return inbox;
+    public String getMessages() {
+        return messages;
     }
 
-    public void setInbox(String inbox) {
-        this.inbox = inbox;
+    public void setMessages(String inbox) {
+        this.messages = inbox;
     }
 
     public Set<User> getMembers() {
@@ -40,11 +40,17 @@ public class Conversation {
         this.members = members;
     }
 
+    public String printMembers(){
+        String membersName ="";
+        for (User member: members){
+            membersName+= " " + member.getName();
+        }
+        return membersName;
+    }
+
     @Override
     public String toString() {
-        return "Inbox{" +
-                "inbox=" + inbox +
-                ", members=" + members +
-                '}';
+        return "Conversation between: " +printMembers()+'\n'+
+                 messages + '\n';
     }
 }

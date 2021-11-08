@@ -21,7 +21,7 @@ public class Student extends User{
         this.status= Class.STATUS.ON;
     }
 
-    public Class.STATUS getStatus() {
+    public Class.STATUS getStudentStatus() {
         return status;
     }
 

@@ -2,7 +2,7 @@ package model;
 
 public class User {
     public static enum STATUS {
-        ACTIVE, DEACTIVE;
+        ACTIVE, INACTIVE;
     }
     private String name;
     private String phoneNumber;
