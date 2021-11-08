@@ -6,17 +6,31 @@ public class AcademicRecord {
     private double literatureGrade;
     private double physicsGrade;
     private double chemistryGrade;
+    private Student student;
 
 
-    public AcademicRecord(double mathsGrade, double englishGrade, double literatureGrade, double physicsGrade, double chemistryGrade) {
+    public AcademicRecord(double mathsGrade, double englishGrade, double literatureGrade, double physicsGrade, double chemistryGrade, Student student) {
         this.mathsGrade = mathsGrade;
         this.englishGrade = englishGrade;
         this.literatureGrade = literatureGrade;
         this.physicsGrade = physicsGrade;
         this.chemistryGrade = chemistryGrade;
+        this.student = student;
     }
 
     public AcademicRecord() {
+    }
+
+    public AcademicRecord(Student student) {
+        this.student = student;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public void setMathsGrade(double mathsGrade) {

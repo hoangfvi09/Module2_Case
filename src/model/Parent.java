@@ -17,4 +17,11 @@ public class Parent extends User{
     public void setRole(ROLE role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "Parent{" +
+                "name = "+getName()+
+                '}';
+    }
 }

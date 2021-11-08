@@ -6,14 +6,16 @@ import model.User;
 import java.util.*;
 
 public class Messenger {
+    private static final Messenger INSTANCE = new Messenger();
     private ArrayList<Conversation> messenger;
     private static int conversationNo = 0;
 
-    public Messenger(ArrayList<Conversation> messenger) {
-        this.messenger = messenger;
+
+    public static Messenger getInstance() {
+        return INSTANCE;
     }
 
-    public Messenger() {
+    private Messenger() {
         this.messenger = new ArrayList<>();
     }
 
@@ -55,7 +57,7 @@ public class Messenger {
         Set<User> members = new HashSet<>();
         members.add(sender);
         members.add(receiver);
-        Conversation conversation = findConversationByMembers(sender,receiver);
+        Conversation conversation = findConversationByMembers(sender, receiver);
 
         if (conversation != null) {
             String inbox = conversation.getMessages();
@@ -88,10 +90,10 @@ public class Messenger {
         Messenger messenger = new Messenger();
         messenger.addNewInbox(user1, user2);
         messenger.addNewInbox(user2, user3);
-        messenger.sendMessage(user1, user2, "Hello, how are you" );
+        messenger.sendMessage(user1, user2, "Hello, how are you");
         messenger.sendMessage(user2, user1, "fine tks");
-        messenger.sendMessage(user1,user2,"dc rui ne!");
-        messenger.sendMessage(user3,user1, "hi 1, i'am 3");
+        messenger.sendMessage(user1, user2, "dc rui ne!");
+        messenger.sendMessage(user3, user1, "hi 1, i'am 3");
         System.out.println(messenger.showUserInbox(user1));
 
     }

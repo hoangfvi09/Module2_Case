@@ -1,31 +1,49 @@
 package service;
 
 import model.Class;
+import model.Parent;
 import model.Student;
 
 import java.util.*;
 
 public class StudentManagement {
-    private final Map<Integer, Student> studentMap;
+    private static final StudentManagement INSTANCE = new StudentManagement();
+    private final ArrayList< Student> studentList;
     private static int studentNo = 0;
 
-    public StudentManagement(Map<Integer, Student> studentMap) {
-        this.studentMap = studentMap;
+    public static StudentManagement getInstance(){
+        return INSTANCE;
     }
 
-    public StudentManagement() {
-        this.studentMap = new TreeMap<>();
+
+    private StudentManagement() {
+        this.studentList = new ArrayList<>();
     }
 
-    public void addStudent(String name, String phoneNumber, Class classVar) {
-        Student student = new Student(name, phoneNumber, studentNo, classVar);
-        studentMap.put(studentNo, student);
+    public void addStudent(String name, String phoneNumber, Class classVar, String birthday) {
+        Student student = new Student(name, phoneNumber, studentNo, classVar, birthday);
+        studentList.add( student);
+        studentNo++;
+    }
+    public void addStudent(String name, String phoneNumber, Class classVar,String birthday,Parent parent) {
+        Student student = new Student(name, phoneNumber, studentNo, classVar,birthday,parent);
+        studentList.add( student);
         studentNo++;
     }
 
+    //tao hsinh moi
+    public Student addStudent(String name, Class classVar,String birthday,Parent parent) {
+        Student student = new Student(name, studentNo, classVar,birthday,parent);
+        studentList.add( student);
+        studentNo++;
+        return student;
+    }
+
+
+
     public void addStudent(String name) {
         Student student = new Student(name, studentNo);
-        studentMap.put(studentNo, student);
+        studentList.add(student);
         studentNo++;
     }
 
@@ -34,18 +52,51 @@ public class StudentManagement {
     }
 
     //return array list of students in specific class
-    public ArrayList<Student> showStudentListOfClass(Class classVar) {
+    public ArrayList<Student> filterStudentsByClass(Class classVar) {
         ArrayList <Student> students=new ArrayList<>();
-        Set<Integer> idSet = studentMap.keySet();
 
-        for (Integer id : idSet) {
-            Class classOfStudent =  studentMap.get(id).getClassOfStudent();
-            if (studentMap.get(id).getClassOfStudent() == classVar){
-                students.add(studentMap.get(id));
+        for (Student student: studentList) {
+            Class classOfStudent =  student.getStudentsClass();
+            if (student.getStudentsClass() == classVar){
+                students.add(student);
             }
         }
         return students;
     }
+
+    public Student findStudentById(int id){
+        for (Student student: studentList) {
+
+            if (student.getId() == id){
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Student> findStudentByName(String name){
+        ArrayList <Student> students=new ArrayList<>();
+        for (Student student: studentList) {
+
+            if (student.getName().contains(name) ){
+                students.add(student);
+            }
+        }
+        return students;
+    }
+
+    public ArrayList <Student> findStudentByParent(Parent parent){
+        ArrayList <Student> students=new ArrayList<>();
+        for (Student student: studentList) {
+
+            if (student.getParent()==parent ){
+                students.add(student);
+            }
+        }
+        return students;
+    }
+
+
 
 
 

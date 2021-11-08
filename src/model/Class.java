@@ -48,7 +48,7 @@ public class Class {
     @Override
     public String toString() {
         return "Class{" +
-                "teacher=" + teacher +
+                "teacher=" + teacher.getName() +
                 ", name='" + name + '\'' +
                 ", status=" + status +
                 '}';
